@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  react:
+    container_name: react_base_prod
+    build:
+      context: .
+      dockerfile: prod.dockerfile
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+    environment:
+      - NODE_ENV=production

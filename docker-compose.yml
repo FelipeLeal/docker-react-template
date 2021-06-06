@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  react:
+    container_name: react_base
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ./react
+        target: /app
+      - /app/node_modules
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+        mode: host
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=development
+    command: npm start
